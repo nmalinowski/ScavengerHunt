@@ -1,0 +1,21 @@
+<form (ngSubmit)="createHunt()">
+    <mat-form-field>
+      <input matInput [(ngModel)]="hunt.code" name="code" placeholder="Hunt Code" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="hunt.prize" name="prize" placeholder="Prize" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="hunt.adminPassword" name="adminPassword" type="password" placeholder="Admin Password" required>
+    </mat-form-field>
+    <div *ngFor="let clue of hunt.clues; let i = index">
+      <mat-form-field>
+        <input matInput [(ngModel)]="clue.description" [name]="'desc' + i" placeholder="Clue Description" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="clue.address" [name]="'addr' + i" placeholder="Address (e.g., 350 5th Ave, NY)" required>
+      </mat-form-field>
+    </div>
+    <button mat-button type="button" (click)="addClue()">Add Clue</button>
+    <button mat-raised-button color="primary" type="submit">Create Hunt</button>
+  </form>

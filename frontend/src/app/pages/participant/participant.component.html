@@ -1,0 +1,22 @@
+<div *ngIf="!isJoined">
+    <h2>Join the Hunt</h2>
+    <mat-form-field>
+      <input matInput [(ngModel)]="huntCode" name="code" placeholder="Hunt Code" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="participantName" name="name" placeholder="Your Name" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="joinHunt()">Join Hunt</button>
+  </div>
+  <div *ngIf="isJoined">
+    <div *ngIf="currentClue">
+      <h2>Current Clue</h2>
+      <p>{{ currentClue.description }}</p>
+      <p *ngIf="currentClue.address">Location: {{ currentClue.address }}</p>
+      <button mat-raised-button color="primary" (click)="checkLocation()">Check Location</button>
+    </div>
+    <div *ngIf="!currentClue && hunt.prize">
+      <h2>Congratulations, {{ participantName }}!</h2>
+      <p>You’ve won: {{ hunt.prize }}</p>
+    </div>
+  </div>
